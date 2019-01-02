@@ -10,8 +10,8 @@ ACCESS_KEY = '22637016-woGjjUDoT29ulE69mn1EkDmg9oCdDvYn7Ux9EZlHU'
 ACCESS_SECRET = 'FVCQcITlcVxVSkFYGE00wlngHUehzpUI2RaEzHOXNysq5'
 
 
-auth = tp.OAuthHandler(consumer_key,consumer_secret)
-auth.set_access_token(access_token, access_secret)
+auth = tp.OAuthHandler(CONSUMER_KEY,CONSUMER_SECRET)
+auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tp.API(auth)
 
 # os.chdir('')
