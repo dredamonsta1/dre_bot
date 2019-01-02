@@ -1,4 +1,6 @@
-import tweepy
+import tweepy as tp
+import time 
+import os
 
 print('this is my twitter bot')
 
@@ -8,4 +10,11 @@ ACCESS_KEY = '22637016-woGjjUDoT29ulE69mn1EkDmg9oCdDvYn7Ux9EZlHU'
 ACCESS_SECRET = 'FVCQcITlcVxVSkFYGE00wlngHUehzpUI2RaEzHOXNysq5'
 
 
-# auth = tweepy.
+auth = tp.OAuthHandler(consumer_key,consumer_secret)
+auth.set_access_token(access_token, access_secret)
+api = tp.API(auth)
+
+# os.chdir('')
+# for model_image in os.listdir('.'):
+#     api.update_with_media(model_image)
+#     time.sleep()
