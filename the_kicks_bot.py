@@ -14,6 +14,15 @@ auth = tp.OAuthHandler(CONSUMER_KEY,CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tp.API(auth)
 
+
+mentions = api.mentions_timeline()
+for mention in mentions:
+    print(str(mention.id) + ' - ' + mention.text)
+    if '#helloworld' in mention.text.lower():
+        print('found hello world dawgggg')
+        print('responding back')
+        api.update_status('@' + mention.user.screen_name + '#helloworld back at you', mention.id)
+
 # os.chdir('')
 # for model_image in os.listdir('.'):
 #     api.update_with_media(model_image)
