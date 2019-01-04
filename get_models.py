@@ -1,5 +1,9 @@
+import requests
+# import bs4 as bs
+from bs4 import BeautifulSoup as bs
+import os
 # the website to get the image
-url = http://d.hatena.ne.jp/stmr/touch
+url = 'http://d.hatena.ne.jp/stmr/touch/20190104'
 
 # download and parse 
 page = requests.get(url)
@@ -17,10 +21,10 @@ os.chdir('kicks')
 
 x = 0
 
-for image in image_tags:
+for image in image:
     try:
         url = image['src']
-        source = request.get(url)
+        source = requests.get(url)
         if source.status_code == 200:
             with open('kicks-' + str(x) + '.jpg', 'wb') as f:
                 f.write(requests.get(url).content)

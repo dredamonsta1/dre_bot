@@ -46,12 +46,16 @@ def reply_to_friends():
             print('responding back')
             api.update_status('@' + mention.user.screen_name + '#helloworld back at you', mention.id)
 
-    # os.chdir('')
-    # for model_image in os.listdir('.'):
-    #     api.update_with_media(model_image)
-    #     time.sleep()
+
+# while True:
+#     reply_to_friends()
+#     time.sleep(15)
 
 
-while True:
-    reply_to_friends()
-    time.sleep(15)
+os.chdir('kicks')
+for model_image in os.listdir('.'):
+    api.update_with_media(model_image)
+    print('i got kicks i got pics')
+    time.sleep(3)
+
+
