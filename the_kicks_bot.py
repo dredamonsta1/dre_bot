@@ -56,6 +56,6 @@ os.chdir('kicks')
 for model_image in os.listdir('.'):
     api.update_with_media(model_image)
     print('i got kicks i got pics')
-    time.sleep(3)
+    time.sleep(25)
 
 

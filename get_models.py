@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup as bs
 import os
 # the website to get the image
-url = 'http://d.hatena.ne.jp/stmr/touch/20190104'
+url = 'http://d.hatena.ne.jp/stmr/touch/20190105'
 
 # download and parse 
 page = requests.get(url)
