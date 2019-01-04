@@ -28,23 +28,30 @@ def store_last_seen_id(last_seen_id, file_name):
     f_write.close()
     return
 
+def reply_to_friends():
+    print('replying to my dawgs')
+#mush have mention.id {1080707051830038528} saved in .txt file
+    last_seen_id = retrieve_last_seen_id(FILE_NAME)
 
-last_seen_id = retrieve_last_seen_id(FILE_NAME)
+    mentions = api.mentions_timeline(
+                        last_seen_id, 
+                        tweet_mode='extended')
 
-mentions = api.mentions_timeline(
-                    last_seen_id, 
-                    tweet_mode='extended')
+    for mention in mentions:
+        print(str(mention.id) + ' - ' + mention.text)
+        last_seen_id = mention.id
+        store_last_seen_id(last_seen_id, FILE_NAME)
+        if '#helloworld' in mention.text.lower():
+            print('found hello world dawgggg')
+            print('responding back')
+            api.update_status('@' + mention.user.screen_name + '#helloworld back at you', mention.id)
 
-for mention in mentions:
-    print(str(mention.id) + ' - ' + mention.text)
-    last_seen_id = mention.id
-    store_last_seen_id(last_seen_id, FILE_NAME)
-    if '#helloworld' in mention.text.lower():
-        print('found hello world dawgggg')
-        print('responding back')
-        api.update_status('@' + mention.user.screen_name + '#helloworld back at you', mention.id)
+    # os.chdir('')
+    # for model_image in os.listdir('.'):
+    #     api.update_with_media(model_image)
+    #     time.sleep()
 
-# os.chdir('')
-# for model_image in os.listdir('.'):
-#     api.update_with_media(model_image)
-#     time.sleep()
+
+while True:
+    reply_to_friends()
+    time.sleep(15)
