@@ -9,7 +9,6 @@ CONSUMER_SECRET = 'uD6Z5N81O6KFvYOMG81tnHIXAwaFLT4m7gtzeSlbIxz3Av7xNj'
 ACCESS_KEY = '22637016-woGjjUDoT29ulE69mn1EkDmg9oCdDvYn7Ux9EZlHU'
 ACCESS_SECRET = 'FVCQcITlcVxVSkFYGE00wlngHUehzpUI2RaEzHOXNysq5'
 
-
 auth = tp.OAuthHandler(CONSUMER_KEY,CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tp.API(auth)
@@ -30,12 +29,16 @@ def store_last_seen_id(last_seen_id, file_name):
     return
 
 
-# last_seen_id = retrieve_last_seen_id(file_name)
+last_seen_id = retrieve_last_seen_id(FILE_NAME)
 
-mentions = api.mentions_timeline(last_seen_id, tweet_mode='extended')
+mentions = api.mentions_timeline(
+                    last_seen_id, 
+                    tweet_mode='extended')
 
 for mention in mentions:
     print(str(mention.id) + ' - ' + mention.text)
+    last_seen_id = mention.id
+    store_last_seen_id(last_seen_id, FILE_NAME)
     if '#helloworld' in mention.text.lower():
         print('found hello world dawgggg')
         print('responding back')
